@@ -1827,6 +1827,9 @@ public final class Utils {
     }
 
     public static int getFDTTransferPort(Config config) throws Exception {
+    	System.out.println("getHostName="+config.getHostName()+"port="+config.getPort());
+    	System.out.println(config.getDestinationDir());
+    	System.out.println(config.getFileList()[0]);
         ControlChannel cc = new ControlChannel(config.getHostName(), config.getPort(), UUID.randomUUID(), FDTSessionManager.getInstance());
         int transferPort = cc.sendTransferPortMessage(new CtrlMsg(CtrlMsg.REMOTE_TRANSFER_PORT, "rtp"));
         // wait for remote config

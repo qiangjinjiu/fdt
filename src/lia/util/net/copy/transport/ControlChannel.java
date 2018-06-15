@@ -372,6 +372,7 @@ public class ControlChannel extends AbstractFDTCloseable implements Runnable {
             if (logger.isLoggable(Level.FINER)) {
                 logger.log(Level.FINER, "[ CtrlChannel ] [ sendTransferPortMessage ] got response: " + newCtrlMsg.message);
             }
+            System.out.println("newCtrlMsg.message="+newCtrlMsg.message);
             return (Integer) newCtrlMsg.message;
         } catch (Exception e) {
             logger.log(Level.WARNING, "Failed to retrieve response from server", e);

@@ -422,8 +422,13 @@ public class FDTWriterSession extends FDTSession implements FileBlockConsumer {
         final Map<String, FileSession> preProcMap = (hasPreProc) ? new HashMap<String, FileSession>() : null;
 
         for (int i = 0; i < fCount; i++) {
-            final String fName = (sccm.remappedFileLists == null || sccm.remappedFileLists[i] == null)
+             String fName = (sccm.remappedFileLists == null || sccm.remappedFileLists[i] == null)
                     ? sccm.fileLists[i] : sccm.remappedFileLists[i];
+            System.out.println("......................................fName="+fName);
+            if(fName.indexOf("\\")>0) {//已经包含了文件路径，所以仅保留文件名即可
+            	fName = fName.substring(fName.lastIndexOf("\\") + 1);
+            }
+            
             final FileWriterSession fws = new FileWriterSession(sccm.fileIDs[i], this,
                     this.destinationDir + File.separator
                             + ((shouldReplace) ? fName.replace(remoteCharSeparator, File.separatorChar) : fName),
